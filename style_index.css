@@ -266,13 +266,13 @@ label {
 
 @media (max-width: 768px) {
   .main-container .search-form .search-div .search-input-field {
-    width: 26em;
+    width: 21em;
   }
 }
 
 @media (max-width: 1000px) {
   .main-container .search-form .search-div .search-input-field {
-    width: 26em;
+    width: 21em;
     padding: 0em 3em;
     font-size: 0.8em;
   }
@@ -542,7 +542,7 @@ label {
 }
 
 .qrcodeContent #qrcode {
-  width: 28em;
+  width: 19em;
   position: absolute;
 }
 
