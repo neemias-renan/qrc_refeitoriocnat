@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
   margin: 0;
 }
@@ -17,6 +18,7 @@ a {
 ul {
   padding: 0;
 }
+
 ul li {
   list-style: none;
   text-decoration: none;
@@ -43,7 +45,11 @@ label {
   font-size: 12px;
 }
 
-.button-base, .button-type-3, .button-type-2, .button-type-1, .main-container .search-form .search-div .search-button {
+.button-base,
+.button-type-3,
+.button-type-2,
+.button-type-1,
+.main-container .search-form .search-div .search-button {
   padding: 0 42px;
   height: 50px;
   font-family: "Inter", sans-serif;
@@ -54,7 +60,8 @@ label {
   cursor: pointer;
 }
 
-.button-type-1, .main-container .search-form .search-div .search-button {
+.button-type-1,
+.main-container .search-form .search-div .search-button {
   color: #000000;
   font-weight: 600;
   border: none;
@@ -79,12 +86,11 @@ label {
   body {
     font-size: 16px;
   }
-  h1 {
-    font-size: 24px;
-  }
+
   h2 {
     font-size: 16px;
   }
+
   h3,
   h4,
   h5,
@@ -92,17 +98,20 @@ label {
   label,
   p,
   .main-container .search-form .search-div .search-input-field {
-    font-size: 12px;
+    font-size: 18px;
   }
 }
+
 .padding-default {
   padding: 0 15em;
 }
+
 @media (max-width: 1500px) {
   .padding-default {
     padding: 0 5em;
   }
 }
+
 @media (max-width: 1100px) {
   .padding-default {
     padding: 0 2em;
@@ -113,12 +122,14 @@ label {
   height: 82px;
   width: 100%;
 }
+
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
 }
+
 .header-content .hamburger {
   display: none;
   flex-direction: column;
@@ -129,6 +140,7 @@ label {
   padding: 0;
   z-index: 1000;
 }
+
 .header-content .hamburger .line {
   width: 100%;
   height: 2px;
@@ -136,39 +148,49 @@ label {
   margin: 3px 0;
   transition: transform 0.2s ease;
 }
+
 .header-content .hamburger.is-active {
   display: flex;
   position: fixed;
   right: 2.4em;
 }
+
 .header-content .hamburger.is-active .line:nth-child(1) {
   transform: translateY(10px) rotate(45deg);
 }
+
 .header-content .hamburger.is-active .line:nth-child(2) {
   opacity: 0;
 }
+
 .header-content .hamburger.is-active .line:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
+
 .header-content .navbar {
   display: flex;
   flex-direction: row;
   gap: 3em;
 }
+
 @media (max-width: 1000px) {
   .header-content .hamburger {
     display: flex;
   }
+
   .header-content .navbar {
     display: none !important;
   }
 }
+
 .header .nav-mobile {
   display: none;
 }
+
 .header .nav-mobile .active {
   color: #349745;
 }
+
 .header .nav-open {
   display: flex;
   flex-direction: column;
@@ -189,33 +211,41 @@ label {
   justify-content: center;
   margin: 7em 0em 0em;
 }
+
 .main-container {
   display: flex;
   flex-direction: column;
   gap: 3em;
 }
+
 .main-container .search-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
+
 .main-container .search-section .separator-image {
   position: relative;
   right: -11em;
 }
+
 .main-container .search-form {
   display: flex;
+  justify-content: center;
 }
+
 .main-container .search-form .search-icon {
   position: absolute;
   margin: 18px 23px;
 }
+
 .main-container .search-form .search-div {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
+
 .main-container .search-form .search-div .search-input-field {
   border-radius: 30px;
   background: #121212;
@@ -225,22 +255,29 @@ label {
   padding: 0em 5em;
   color: #FFFFFF;
 }
+
 .main-container .search-form .search-div .search-input-field:focus-visible {
   outline: none;
 }
+
 .main-container .search-form .search-div .search-input-field ::placeholder {
   color: #6A6A6A;
 }
+
 @media (max-width: 768px) {
   .main-container .search-form .search-div .search-input-field {
-    width: 30em;
+    width: 26em;
   }
 }
+
 @media (max-width: 1000px) {
   .main-container .search-form .search-div .search-input-field {
-    width: 37em;
+    width: 26em;
+    padding: 0em 3em;
+    font-size: 0.8em;
   }
 }
+
 .main-container .search-form .search-div .search-button {
   position: absolute;
   margin-right: 8px;
@@ -274,22 +311,27 @@ label {
   transform: translateY(100%);
   animation: slideIn 1s ease-out 0.5s forwards;
 }
+
 @keyframes slideIn {
   0% {
     transform: translateY(100%);
   }
+
   100% {
     transform: translateY(0%);
   }
 }
+
 @keyframes slideOut {
   0% {
     transform: translateY(0%);
   }
+
   100% {
     transform: translateY(100%);
   }
 }
+
 .container-response .response-div {
   bottom: 0;
   position: relative;
@@ -298,6 +340,7 @@ label {
   align-items: flex-end;
   justify-content: center;
 }
+
 .container-response .div-response {
   filter: drop-shadow(0px -20px 30px rgba(0, 0, 0, 0.7));
   border-radius: 70px 70px 0px 0px;
@@ -305,10 +348,12 @@ label {
   width: 100%;
   transition: 1s ease-out 0.5s;
 }
+
 .container-response .div-response-header {
   display: flex;
   justify-content: flex-end;
 }
+
 .container-response .div-response-main {
   display: flex;
   flex-direction: column;
@@ -317,14 +362,17 @@ label {
   gap: 3em;
   margin-top: 2em;
 }
+
 .container-response .div-response-main-div {
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
+
 .container-response .div-response-main-h1 {
   color: #211A2E;
 }
+
 .container-response .div-response-main-h2 {
   color: rgba(33, 26, 46, 0.7);
   font-size: 39px;
@@ -332,6 +380,7 @@ label {
   font-weight: 400;
   line-height: normal;
 }
+
 .container-response .div-response-main-p {
   color: #211A2E;
   font-size: 20px;
@@ -339,12 +388,14 @@ label {
   font-weight: 400;
   line-height: normal;
 }
+
 .container-response .div-response #video,
 .container-response .div-response #dataurl-container,
 .container-response .div-response #canvas,
 .container-response .div-response #dataurl {
   display: none;
 }
+
 .container-response .div-register {
   position: fixed;
   top: 0;
@@ -358,11 +409,13 @@ label {
   justify-content: center;
   flex-direction: column;
 }
+
 .container-response .div-register-photo {
   width: 70%;
   height: 570px;
   object-fit: cover;
 }
+
 .container-response .div-register-div {
   position: absolute;
   width: 65%;
@@ -372,9 +425,11 @@ label {
   align-items: flex-end;
   justify-content: space-between;
 }
+
 .container-response .div-register-div-datas {
   text-shadow: 1px 4px 20px black;
 }
+
 .container-response .div-register-div-exit {
   cursor: pointer;
   text-shadow: 1px 4px 20px black;
@@ -383,17 +438,21 @@ label {
 .details {
   margin: 7em 0em 0em;
 }
+
 .details-content {
   display: flex;
   gap: 42px;
   flex-direction: column;
 }
+
 .details-content .table .no-background {
   background: none;
 }
+
 .details-content .table .table-datas:nth-child(2n+1) {
   background: none;
 }
+
 .details-content .table-datas {
   display: flex;
   flex-direction: row;
@@ -405,23 +464,28 @@ label {
   align-items: center;
   font-weight: 300;
 }
+
 .details-content .table-datas .name {
   width: 50%;
   text-transform: capitalize;
 }
+
 .details-content .table-datas .datas {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .details-content .table-datas .datas .data-details {
   text-align: center;
   padding: 8px 7px;
 }
+
 .details-content .table-datas .datas .data {
   width: 100%;
 }
+
 .details-content .table-datas .datas .button-view {
   border-radius: 34px;
   border: 1px solid #FFF;
@@ -431,6 +495,7 @@ label {
   padding: 8px 7px;
   cursor: pointer;
 }
+
 .details-content .table .div-register {
   position: fixed;
   top: 0;
@@ -443,11 +508,13 @@ label {
   justify-content: center;
   flex-direction: column;
 }
+
 .details-content .table .div-register-photo {
   width: 70%;
   height: 570px;
   object-fit: cover;
 }
+
 .details-content .table .div-register-div {
   position: absolute;
   width: 65%;
@@ -457,6 +524,7 @@ label {
   align-items: flex-end;
   justify-content: space-between;
 }
+
 .details-content .table .div-register-div-exit {
   cursor: pointer;
 }
@@ -472,6 +540,7 @@ label {
   justify-content: center;
   background: rgba(0, 0, 0, 0.768627451);
 }
+
 .qrcodeContent #qrcode {
   width: 28em;
   position: absolute;
