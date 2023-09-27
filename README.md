@@ -4,7 +4,7 @@ Bem-vindo ao Gerador de QR Codes para o Refeitório do IFCNAT! Este é um projet
 
 ## Como Usar
 
-1. Acesse o site do gerador: [QRCodes do Refeitório](https://neemias-renan.github.io/qrc_refeitoriocnat/).
+1. Acesse o site do gerador: [QRCodes do Refeitório](www2.ifrn.edu.br/refeitoriocnat/).
 
 2. Na página inicial, você encontrará um campo de texto onde poderá inserir sua matrícula.
 
