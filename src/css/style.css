@@ -157,13 +157,13 @@ footer,
 }
 .authenticated .qrcode {
   width: 100%;
-  max-width: 29em;
+  max-width: 25em;
 }
 .authenticated .texts {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 0px;
 }
 .authenticated .texts .titulo {
   color: #FFF;
@@ -172,6 +172,7 @@ footer,
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin: 0;
 }
 .authenticated .texts .titulo #user {
   color: #2ED2BA;
