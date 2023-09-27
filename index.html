@@ -1,83 +1,105 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Refeitório</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="style_index.css">
-    <link rel="icon" type="image/x-icon" href="logotipo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Refeitório CNAT</title>
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="icon" type="image/x-icon" href="src/images/logo.png">
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="header-content padding-default">
-            <img class="logo" src="logo.svg" alt="Refeitório - Cnat">
-        </div>
-    </header>
+  <section class="limitador">
+    <div class="img">
+      <img src="src/images/mockup.png" class="mockup">
+    </div>
+    <div class="limitador-text">
+      <h1 class="limitador-text-h1">Para gerar o QRCODE<br>
+        use um <span>Dispositivo móvel</span></h1>
+    </div>
+  </section>
 
-    <main class="main">
-        <div class="main-container">
-            <div class="search-section">
-                <h1 class="section-title">Informe sua Matrícula</h1>
-            </div>
+  <header>
+    <img src="src/images/logotipo.png">
+  </header>
 
-            <div class="search-form content" id="search-form">
-                <div class="search-div">
-                    <input class="search-input-field" id="input-field" type="text" name="matricula" autocomplete="off"
-                        placeholder="Informe sua matrícula" required>
+  <main class="hero">
+    <h1 class="title">Refeitório do<br> IFRN-CNAT</h1>
+    <img class="lines" src="src/images/lines.svg">
+  </main>
 
 
+  <footer class="footer">
+    <h2 class="text">
+      Faça login no SUAP<br>
+      para obter o <span>QR Code</span><br>
+      de acesso ao Refeitório.
+    </h2>
+    <a id="suap-login-button" class="input-button"><input class="button_yellow" type="button" value="Fazer Login"></a>
+  </footer>
 
-                    <button class="search-button" id="search-button">
-                        <img class="" src="search.svg" alt="Search">
-                    </button>
-                </div>
-            </div>
+  <section class="authenticated">
+    <img id="qrcode" class="qrcode" src="">
+    <div class="texts">
+      <h1 class="titulo">Oi, <span id="user" class="user"></span></h1>
+      <p class="texto-info">
+        Com o registro do lanche, a equipe do refeitório poderá ter uma visão clara de quantos alunos estão lanchando.
+        <br /><br />
+        Isso permite um planejamento mais eficiente da quantidade de alimentos e bebidas necessários para atender a
+        todos.
+      </p>
+    </div>
+    <a class="input-button" id="suap-logout-button"><input class="button_red" type="button"
+        value="Voltar ao Início"></a>
+  </section>
 
-        </div>
 
-        <div class="qrcodeContent">
-            <img id="qrcode" src="">
-            <p class="bold" id="qrvalue"></p>
-        </div>
-    </main>
 
-    <script>
-        const input = document.querySelector("input");
-        const qrcode = document.querySelector("#qrcode");
-        const qrvalue = document.querySelector("#qrvalue");
-        const qrcodeContent = document.querySelector(".qrcodeContent");
-        const searchButton = document.querySelector("#search-button");
 
-        searchButton.addEventListener("click", () => {
-            genQRCode();
-            qrcodeContent.style = "display: flex;"
-            qrvalue.innerText = input.value
-            console.log(input.value)
-        })
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="js.cookie.js"></script>
+  <script src="settings.js"></script>
+  <script src="client.js"></script>
+  <script>
+    var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
+    suap.init();
 
-        qrcodeContent.addEventListener("click", () => {
-            qrcodeContent.style = "display: none;"
-        })
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('suap-login-button').href = suap.getLoginURL();
 
-        document.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                genQRCode();
-                qrcodeContent.style = "display: flex;"
-                qrvalue.innerText = input.value
-                e.target.blur(); 
-            }
-        });
 
-        function genQRCode() {
-            if (!input.value) return;
+      if (suap.isAuthenticated()) {
+        document.querySelector('.authenticated').style = "display: flex;"
+        openContext()
+        console.log('autenticado')
 
-            qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${input.value}&bgcolor=01BE64`;
-        }
-    </script>
+        var callback = (response) => {
+          console.log(response)
+          qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${response.matricula}&bgcolor=01BE64`;
+          document.getElementById('user').textContent = response.nome_usual;
+        };
+        suap.getResource(callback);
+      }
+      else {
+        console.log('não autenticado')
+      }
+    });
+
+    document.getElementById('suap-logout-button').addEventListener('click', function () {
+      suap.logout();
+    });
+
+    function openContext() {
+      document.querySelector('.authenticated').style = " animation: slideIn 1s ease-out 0.5s forwards; z-index:500; display: flex;"
+    }
+
+    function closeContext() {
+      document.querySelector('.authenticated').style = "animation: slideOut 1s ease-out forwards;";
+    }
+
+  </script>
 </body>
 
 </html>
