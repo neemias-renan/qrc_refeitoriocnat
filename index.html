@@ -84,7 +84,7 @@
 
         var callback = (response) => {
           console.log(response)
-          qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${response.matricula}&bgcolor=01BE64`;
+          qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${response.matricula}&bgcolor=01BE64`;
           document.getElementById('username').textContent = response.nome_usual;
         };
         suap.getResource(callback);
