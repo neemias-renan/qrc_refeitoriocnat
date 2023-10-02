@@ -40,6 +40,7 @@
     <a id="suap-login-button" class="input-button"><input class="button_yellow" type="button" value="Fazer Login"></a>
   </footer>
 
+<<<<<<< Updated upstream
   <section class="authenticated">
     <img id="qrcode" class="qrcode" src="">
     <div class="texts">
@@ -50,6 +51,54 @@
         Isso permite um planejamento mais eficiente da quantidade de alimentos e bebidas necessários para atender a
         todos.
       </p>
+=======
+
+
+  <section class="authenticated-section">
+    <img id="qr-code" class="qr-code-image" src="">
+
+    <div class="data-container">
+      <div class="data">
+        <h1 class="title">Oi, <span id="username" class="username"></span></h1>
+        <p class="info-text">
+          <span class="info-max">
+            Com o registro do lanche, a equipe do refeitório poderá ter uma visão clara de quantos alunos estão
+            lanchando.
+            <br /><br />
+            Isso permite um planejamento mais eficiente da quantidade de alimentos e bebidas necessários para atender a
+            todos.
+          </span>
+
+          <span class="info-min">O registro no lanche permite um planejamento mais eficiente da quantidade de alimentos
+            e
+            bebidas necessários para atender a todos.</span>
+        </p>
+      </div>
+      <a class="logout-link" id="suap-logout-button"><input class="button_red" type="button"
+          value="Voltar ao Início"></a>
+    </div>
+  </section>
+
+  <section class="error-section">
+    <img id="error" class="error-image" src="src/images/error.svg">
+
+    <div class="data-container">
+      <div class="data">
+        <h1 class="title">Oi, <span id="username-error" class="username error-name"></span></h1>
+        <p class="info-text">
+          <span>
+            Agradecemos o seu interesse em desfrutar do nosso serviço de lanches oferecido no refeitório da escola.
+            <br /><br />
+            No entanto, gostaríamos de informar que o lanche está disponível exclusivamente para os alunos matriculados.
+            <br /><br />
+            Matrícula: <span class="info-matricula"></span>
+            <br />
+            Situação: <span class="info-situacao"></span>
+          </span>
+      </div>
+      <a class="logout-link" id="suap-logout-button"><input class="button_red" type="button"
+          value="Voltar ao Início"></a>
+>>>>>>> Stashed changes
     </div>
     <a class="input-button" id="suap-logout-button"><input class="button_red" type="button"
         value="Voltar ao Início"></a>
@@ -71,6 +120,7 @@
 
 
       if (suap.isAuthenticated()) {
+<<<<<<< Updated upstream
         document.querySelector('.authenticated').style = "display: flex;"
         openContext()
         console.log('autenticado')
@@ -79,6 +129,24 @@
           console.log(response)
           qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${response.matricula}&bgcolor=01BE64`;
           document.getElementById('user').textContent = response.nome_usual;
+=======
+
+
+        var callback = (response) => {
+          if (response.tipo_vinculo == 'Aluno') {
+            document.querySelector('.authenticated-section').style = "display: flex;"
+            qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${response.matricula}&bgcolor=01BE64`;
+            document.getElementById('username').textContent = response.nome_usual;
+          }
+          else {
+            console.log(response)
+            document.querySelector('.error-section').style = "display: flex;"
+            document.getElementById('username-error').textContent = response.nome_usual;
+            document.querySelector('.info-matricula').innerHTML = response.matricula
+            document.querySelector('.info-situacao').innerHTML = response.tipo_vinculo
+          }
+
+>>>>>>> Stashed changes
         };
         suap.getResource(callback);
       }
