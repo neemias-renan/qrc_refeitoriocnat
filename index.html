@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
   <section class="limitador">
     <div class="img">
       <img src="src/images/mockup.png" class="mockup">
@@ -30,29 +29,37 @@
     <img class="lines" src="src/images/lines.svg">
   </main>
 
-
   <footer class="footer">
     <h2 class="text">
       Faça login no SUAP<br>
       para obter o <span>QR Code</span><br>
       de acesso ao Refeitório.
     </h2>
-    <a id="suap-login-button" class="input-button"><input class="button_yellow" type="button" value="Fazer Login"></a>
+    <a id="suap-login-button" class="input-button"><input class="button_green" type="button" value="Fazer Login"></a>
   </footer>
 
-  <section class="authenticated">
-    <img id="qrcode" class="qrcode" src="">
-    <div class="texts">
-      <h1 class="titulo">Oi, <span id="user" class="user"></span></h1>
-      <p class="texto-info">
-        Com o registro do lanche, a equipe do refeitório poderá ter uma visão clara de quantos alunos estão lanchando.
-        <br /><br />
-        Isso permite um planejamento mais eficiente da quantidade de alimentos e bebidas necessários para atender a
-        todos.
-      </p>
+
+
+  <section class="authenticated-section">
+    <img id="qr-code" class="qr-code-image" src="">
+
+    <div class="data-container">
+      <div class="data">
+        <h1 class="title">Oi, <span id="username" class="username"></span></h1>
+        <p class="info-text">
+        <span class="info-max">
+          Com o registro do lanche, a equipe do refeitório poderá ter uma visão clara de quantos alunos estão lanchando.
+          <br /><br />
+          Isso permite um planejamento mais eficiente da quantidade de alimentos e bebidas necessários para atender a
+          todos.
+        </span>
+
+        <span class="info-min">O registro no lanche permite um planejamento mais eficiente da quantidade de alimentos e
+          bebidas necessários para atender a todos.</span>
+        </p>
+      </div>
+      <a class="logout-link" id="suap-logout-button"><input class="button_red" type="button" value="Voltar ao Início"></a>
     </div>
-    <a class="input-button" id="suap-logout-button"><input class="button_red" type="button"
-        value="Voltar ao Início"></a>
   </section>
 
 
@@ -62,23 +69,23 @@
   <script src="js.cookie.js"></script>
   <script src="settings.js"></script>
   <script src="client.js"></script>
+
+
   <script>
     var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
     suap.init();
 
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('suap-login-button').href = suap.getLoginURL();
-
+      qrcode = document.getElementById('qr-code');
 
       if (suap.isAuthenticated()) {
-        document.querySelector('.authenticated').style = "display: flex;"
-        openContext()
-        console.log('autenticado')
+        document.querySelector('.authenticated-section').style = "display: flex;"
 
         var callback = (response) => {
           console.log(response)
           qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${response.matricula}&bgcolor=01BE64`;
-          document.getElementById('user').textContent = response.nome_usual;
+          document.getElementById('username').textContent = response.nome_usual;
         };
         suap.getResource(callback);
       }
@@ -98,7 +105,6 @@
     function closeContext() {
       document.querySelector('.authenticated').style = "animation: slideOut 1s ease-out forwards;";
     }
-
   </script>
 </body>
 

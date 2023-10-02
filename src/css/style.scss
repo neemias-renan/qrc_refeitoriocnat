@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+
+$dark-color: #1A1A1A;
+
 body {
-    background-color: #1A1A1A;
+    background-color: $dark-color;
     font-family: 'Inter', sans-serif;
     color: white;
     margin: 0;
@@ -19,15 +22,12 @@ a {
 
 .limitador {
     display: none;
-
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #1A1A1A;
-
-    // display: flex;
     align-items: center;
     justify-content: center;
+    background-color: $dark-color;
 
     .img {
         display: flex;
@@ -41,8 +41,6 @@ a {
 
     &-text {
         &-h1 {
-            color: #FFF;
-            font-family: Inter;
             font-size: 40px;
             font-style: normal;
             font-weight: 700;
@@ -50,7 +48,6 @@ a {
 
             span {
                 color: #03D1BA;
-                font-family: Inter;
                 font-size: 40px;
                 font-style: normal;
                 font-weight: 700;
@@ -59,17 +56,56 @@ a {
         }
     }
 
-    @media (min-width:900px) {
+    @media (min-width: 900px) {
         display: flex;
     }
 }
 
+.button_yellow,
+.button_red,
+.button_green {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 15px;
+    width: 100%;
+    color: $dark-color;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.button_yellow {
+    background: #FFD669;
+}
+
+.button_red {
+    background: #FA6879;
+}
+
+.button_green {
+    background: #2ED2BA;
+}
+
+
 header,
 main,
 footer,
-.authenticated {
+.authenticated-section {
     padding: 20px;
 }
+
+
+header {
+    @media(max-height:820px) {
+        opacity: 0;
+    }
+}
+
 
 
 .hero {
@@ -78,9 +114,7 @@ footer,
     align-items: center;
 
     .title {
-        color: #FFF;
         text-align: center;
-        font-family: 'Inter', sans-serif;
         font-size: 51.224px;
         font-style: normal;
         font-weight: 700;
@@ -93,14 +127,13 @@ footer,
     }
 }
 
+
 .footer {
     display: flex;
     gap: 54px;
     flex-direction: column;
 
     .text {
-        color: #FFF;
-        font-family: 'Inter', sans-serif;
         font-size: 30px;
         font-style: normal;
         font-weight: 400;
@@ -109,132 +142,96 @@ footer,
 
         span {
             color: #2ED2BA;
-            font-family: 'Inter', sans-serif;
             font-size: 30px;
             font-style: normal;
             font-weight: 700;
             line-height: normal;
         }
     }
-
-    .button_yellow {
-        display: flex;
-        padding: 20px;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-
-        border: none;
-        border-radius: 15px;
-        background: #FFD669;
-        width: 100%;
-
-        color: #000;
-        font-family: 'Inter', sans-serif;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-    }
 }
 
-.authenticated {
+.authenticated-section {
     display: none;
-    border-radius: 30px 30px 0px 0px;
-    background: #242424;
-    box-shadow: 0px -20px 24px 0px #171717;
+    background-color: $dark-color;
     position: fixed;
     bottom: 0;
     flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
     align-items: center;
-    gap: 29px;
-    transition: 1s ease-out 0.5s;
-    transform: translateY(100%);
+    gap: 37px;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
 
-    @media (min-width:900px) {
-        display: none !important;
-    }
 
-    @keyframes slideIn {
-        0% {
-            transform: translateY(100%);
-        }
-
-        100% {
-            transform: translateY(0%);
-        }
-    }
-
-    @keyframes slideOut {
-        0% {
-            transform: translateY(0%);
-        }
-
-        100% {
-            transform: translateY(100%);
-        }
-    }
-
-    .qrcode {
+    .qr-code-image {
         width: 100%;
         max-width: 29em;
     }
 
-    .texts {
-        display: flex;
+    .data-container {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-
-        .titulo {
-            color: #FFF;
-            font-family: 'Inter', sans-serif;
-            font-size: 30px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-
-            #user {
-                color: #2ED2BA;
-                font-family: 'Inter', sans-serif;
-                font-size: 30px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: normal;
-            }
-        }
-
-        .texto-info {
-            color: #FFF;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-    }
-
-    .input-button {
+        justify-content: flex-end;
+        gap: 37px;
+        display: flex;
         width: 100%;
 
-        .button_red {
+        .data {
             display: flex;
-            padding: 20px;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
 
-            border: none;
-            border-radius: 15px;
-            background: #FA6879;
-            width: 100%;
+            .title {
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin: 0;
 
-            color: #000;
-            font-family: 'Inter', sans-serif;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
+                #username {
+                    color: #2ED2BA;
+                    font-weight: 700;
+                }
+            }
+
+            .info-text {
+                font-size: 19px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin: 0;
+
+                .info-max {}
+
+                .info-min {
+                    display: none;
+                }
+
+                @media(max-height:870px) {
+                    .info-min {
+                        display: flex;
+                        font-size: 16px;
+                    }
+
+                    .info-max {
+                        display: none;
+                    }
+                }
+
+                @media(max-height:750px) {
+                    display: none;
+                }
+            }
+
+
         }
+
+
+    }
+
+    @media (min-width: 900px) {
+        display: none !important;
     }
 }
