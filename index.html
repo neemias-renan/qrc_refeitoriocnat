@@ -47,18 +47,44 @@
       <div class="data">
         <h1 class="title">Oi, <span id="username" class="username"></span></h1>
         <p class="info-text">
-        <span class="info-max">
-          Com o registro do lanche, a equipe do refeitório poderá ter uma visão clara de quantos alunos estão lanchando.
-          <br /><br />
-          Isso permite um planejamento mais eficiente da quantidade de alimentos e bebidas necessários para atender a
-          todos.
-        </span>
+          <span class="info-max">
+            Com o registro do lanche, a equipe do refeitório poderá ter uma visão clara de quantos alunos estão
+            lanchando.
+            <br /><br />
+            Isso permite um planejamento mais eficiente da quantidade de alimentos e bebidas necessários para atender a
+            todos.
+          </span>
 
-        <span class="info-min">O registro no lanche permite um planejamento mais eficiente da quantidade de alimentos e
-          bebidas necessários para atender a todos.</span>
+          <span class="info-min">O registro no lanche permite um planejamento mais eficiente da quantidade de alimentos
+            e
+            bebidas necessários para atender a todos.</span>
         </p>
       </div>
-      <a class="logout-link" id="suap-logout-button"><input class="button_red" type="button" value="Voltar ao Início"></a>
+      <a class="logout-link" id="suap-logout-button-authenticated"><input class="button_red" type="button"
+          value="Voltar ao Início"></a>
+    </div>
+  </section>
+
+  <section class="error-section">
+    <img id="error" class="error-image" src="src/images/error.svg">
+
+    <div class="data-container">
+      <div class="data">
+        <h1 class="title">Oi, <span id="username-error" class="username error-name"></span></h1>
+        <p class="info-text">
+          <span>
+            Agradecemos o seu interesse em desfrutar do nosso serviço de lanches oferecido no refeitório da escola.
+            <br /><br />
+            No entanto, gostaríamos de informar que o lanche está disponível exclusivamente para os alunos matriculados.
+            <br /><br />
+            Matrícula: <span class="info-matricula"></span>
+            <br />
+            Situação: <span class="info-situacao"></span>
+          </span>
+      </div>
+      <a class="logout-link" id="suap-logout-button-no-authenticated">
+        <input class="button_red" type="button" value="Voltar ao Início">
+      </a>
     </div>
   </section>
 
@@ -80,12 +106,19 @@
       qrcode = document.getElementById('qr-code');
 
       if (suap.isAuthenticated()) {
-        document.querySelector('.authenticated-section').style = "display: flex;"
-
         var callback = (response) => {
-          console.log(response)
-          qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${response.matricula}&bgcolor=01BE64`;
-          document.getElementById('username').textContent = response.nome_usual;
+          if (response.tipo_vinculo == 'Aluno') {
+            document.querySelector('.authenticated-section').style = "display: flex;"
+            qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${response.matricula}&bgcolor=01BE64`;
+            document.getElementById('username').textContent = response.nome_usual;
+          }
+          else {
+            console.log(response)
+            document.querySelector('.error-section').style = "display: flex;"
+            document.getElementById('username-error').textContent = response.nome_usual;
+            document.querySelector('.info-matricula').innerHTML = response.matricula
+            document.querySelector('.info-situacao').innerHTML = response.tipo_vinculo
+          }
         };
         suap.getResource(callback);
       }
@@ -94,7 +127,11 @@
       }
     });
 
-    document.getElementById('suap-logout-button').addEventListener('click', function () {
+    document.getElementById('suap-logout-button-no-authenticated').addEventListener('click', () => {
+      suap.logout();
+    });
+
+    document.getElementById('suap-logout-button-authenticated').addEventListener('click', () => {
       suap.logout();
     });
 
