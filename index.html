@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
   <section class="limitador">
     <div class="img">
       <img src="src/images/mockup.png" class="mockup">
@@ -30,14 +29,13 @@
     <img class="lines" src="src/images/lines.svg">
   </main>
 
-
   <footer class="footer">
     <h2 class="text">
       Faça login no SUAP<br>
       para obter o <span>QR Code</span><br>
       de acesso ao Refeitório.
     </h2>
-    <a id="suap-login-button" class="input-button"><input class="button_yellow" type="button" value="Fazer Login"></a>
+    <a id="suap-login-button" class="input-button"><input class="button_green" type="button" value="Fazer Login"></a>
   </footer>
 
 
@@ -97,6 +95,8 @@
   <script src="js.cookie.js"></script>
   <script src="settings.js"></script>
   <script src="client.js"></script>
+
+
   <script>
     var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
     suap.init();
@@ -119,7 +119,6 @@
             document.querySelector('.info-matricula').innerHTML = response.matricula
             document.querySelector('.info-situacao').innerHTML = response.tipo_vinculo
           }
-
         };
         suap.getResource(callback);
       }
@@ -143,7 +142,6 @@
     function closeContext() {
       document.querySelector('.authenticated').style = "animation: slideOut 1s ease-out forwards;";
     }
-
   </script>
 </body>
 
