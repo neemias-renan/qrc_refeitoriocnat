@@ -2,7 +2,7 @@
 body {
   background-color: #1A1A1A;
   font-family: "Inter", sans-serif;
-  color: white;
+  color: #fff;
   margin: 0;
   width: 100%;
   height: 100%;
@@ -34,7 +34,7 @@ a {
   width: 30em;
 }
 .limitador-text-h1 {
-  color: #FFF;
+  color: #fff;
   font-family: Inter;
   font-size: 40px;
   font-style: normal;
@@ -42,12 +42,7 @@ a {
   line-height: normal;
 }
 .limitador-text-h1 span {
-  color: #03D1BA;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  color: #2ED2BA;
 }
 @media (min-width: 900px) {
   .limitador {
@@ -58,12 +53,8 @@ a {
 header,
 main,
 footer,
-<<<<<<< Updated upstream
-.authenticated {
-=======
 .authenticated-section,
 .error-section {
->>>>>>> Stashed changes
   padding: 20px;
 }
 
@@ -73,7 +64,7 @@ footer,
   align-items: center;
 }
 .hero .title {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: "Inter", sans-serif;
   font-size: 51.224px;
@@ -92,7 +83,7 @@ footer,
   flex-direction: column;
 }
 .footer .text {
-  color: #FFF;
+  color: #fff;
   font-family: "Inter", sans-serif;
   font-size: 30px;
   font-style: normal;
@@ -103,12 +94,10 @@ footer,
 .footer .text span {
   color: #2ED2BA;
   font-family: "Inter", sans-serif;
-  font-size: 30px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
 }
-.footer .button_yellow {
+
+input[type=button] {
   display: flex;
   padding: 20px;
   justify-content: center;
@@ -116,103 +105,94 @@ footer,
   gap: 8px;
   border: none;
   border-radius: 15px;
-  background: #FFD669;
   width: 100%;
-  color: #000;
+  color: #1A1A1A;
   font-family: "Inter", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  cursor: pointer;
 }
 
-.authenticated {
+.button_green {
+  background: #2ED2BA;
+}
+
+.button_yellow {
+  background: #FFD669;
+}
+
+.button_red {
+  background: #FA6879;
+}
+
+.authenticated-section {
   display: none;
   border-radius: 30px 30px 0px 0px;
-  background: #242424;
-  box-shadow: 0px -20px 24px 0px #171717;
+  background: #1A1A1A;
+  box-shadow: 0px -20px 24px 0px #1A1A1A;
   position: fixed;
   bottom: 0;
   flex-direction: column;
-  align-items: center;
   gap: 29px;
-  transition: 1s ease-out 0.5s;
-  transform: translateY(100%);
+  height: 100%;
+  justify-content: flex-end;
+  width: -webkit-fill-available;
 }
 @media (min-width: 900px) {
-  .authenticated {
+  .authenticated-section {
     display: none !important;
   }
 }
-@keyframes slideIn {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-@keyframes slideOut {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-.authenticated .qrcode {
+.authenticated-section .qr-code-image {
   width: 100%;
   max-width: 29em;
 }
-.authenticated .texts {
+.authenticated-section .data-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 12px;
 }
-.authenticated .texts .titulo {
-  color: #FFF;
+.authenticated-section .data-container .data {
   font-family: "Inter", sans-serif;
+  color: #fff;
+}
+.authenticated-section .data-container .data .title {
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin: 0;
 }
-.authenticated .texts .titulo #user {
+.authenticated-section .data-container .data .title .username {
   color: #2ED2BA;
-  font-family: "Inter", sans-serif;
-  font-size: 30px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
 }
-.authenticated .texts .texto-info {
-  color: #FFF;
-  font-family: "Inter", sans-serif;
+.authenticated-section .data-container .data .info-text {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.authenticated .input-button {
-  width: 100%;
+.authenticated-section .data-container .data .info-text .info-min {
+  display: none;
 }
-.authenticated .input-button .button_red {
-  display: flex;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border: none;
-  border-radius: 15px;
-  background: #FA6879;
+@media (max-height: 750px) {
+  .authenticated-section .data-container .data .info-text .info-max {
+    display: none;
+  }
+  .authenticated-section .data-container .data .info-text .info-min {
+    display: flex;
+  }
+}
+@media (max-height: 500px) {
+  .authenticated-section .data-container .data .info-text {
+    display: none !important;
+  }
+}
+.authenticated-section .input-button {
   width: 100%;
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
 }
 
 .error-section {
@@ -231,7 +211,15 @@ footer,
 }
 .error-section .error-image {
   width: 100%;
-  max-width: 17em;
+  max-width: 60%;
+  height: 100%;
+}
+@media (max-height: 700px) {
+  .error-section .error-image {
+    width: 100%;
+    max-width: 65%;
+    height: 10em;
+  }
 }
 .error-section .data-container {
   flex-direction: column;
@@ -264,7 +252,8 @@ footer,
   line-height: normal;
   margin: 0;
 }
-.error-section .data-container .data .info-text .info-matricula, .error-section .data-container .data .info-text .info-situacao {
+.error-section .data-container .data .info-text .info-matricula,
+.error-section .data-container .data .info-text .info-situacao {
   font-weight: 700;
 }
 @media (min-width: 900px) {

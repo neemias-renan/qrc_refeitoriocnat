@@ -40,18 +40,6 @@
     <a id="suap-login-button" class="input-button"><input class="button_yellow" type="button" value="Fazer Login"></a>
   </footer>
 
-<<<<<<< Updated upstream
-  <section class="authenticated">
-    <img id="qrcode" class="qrcode" src="">
-    <div class="texts">
-      <h1 class="titulo">Oi, <span id="user" class="user"></span></h1>
-      <p class="texto-info">
-        Com o registro do lanche, a equipe do refeitório poderá ter uma visão clara de quantos alunos estão lanchando.
-        <br /><br />
-        Isso permite um planejamento mais eficiente da quantidade de alimentos e bebidas necessários para atender a
-        todos.
-      </p>
-=======
 
 
   <section class="authenticated-section">
@@ -74,7 +62,7 @@
             bebidas necessários para atender a todos.</span>
         </p>
       </div>
-      <a class="logout-link" id="suap-logout-button"><input class="button_red" type="button"
+      <a class="logout-link" id="suap-logout-button-authenticated"><input class="button_red" type="button"
           value="Voltar ao Início"></a>
     </div>
   </section>
@@ -96,12 +84,10 @@
             Situação: <span class="info-situacao"></span>
           </span>
       </div>
-      <a class="logout-link" id="suap-logout-button"><input class="button_red" type="button"
-          value="Voltar ao Início"></a>
->>>>>>> Stashed changes
+      <a class="logout-link" id="suap-logout-button-no-authenticated">
+        <input class="button_red" type="button" value="Voltar ao Início">
+      </a>
     </div>
-    <a class="input-button" id="suap-logout-button"><input class="button_red" type="button"
-        value="Voltar ao Início"></a>
   </section>
 
 
@@ -117,21 +103,9 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('suap-login-button').href = suap.getLoginURL();
-
+      qrcode = document.getElementById('qr-code');
 
       if (suap.isAuthenticated()) {
-<<<<<<< Updated upstream
-        document.querySelector('.authenticated').style = "display: flex;"
-        openContext()
-        console.log('autenticado')
-
-        var callback = (response) => {
-          console.log(response)
-          qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${response.matricula}&bgcolor=01BE64`;
-          document.getElementById('user').textContent = response.nome_usual;
-=======
-
-
         var callback = (response) => {
           if (response.tipo_vinculo == 'Aluno') {
             document.querySelector('.authenticated-section').style = "display: flex;"
@@ -146,7 +120,6 @@
             document.querySelector('.info-situacao').innerHTML = response.tipo_vinculo
           }
 
->>>>>>> Stashed changes
         };
         suap.getResource(callback);
       }
@@ -155,7 +128,11 @@
       }
     });
 
-    document.getElementById('suap-logout-button').addEventListener('click', function () {
+    document.getElementById('suap-logout-button-no-authenticated').addEventListener('click', () => {
+      suap.logout();
+    });
+
+    document.getElementById('suap-logout-button-authenticated').addEventListener('click', () => {
       suap.logout();
     });
 
