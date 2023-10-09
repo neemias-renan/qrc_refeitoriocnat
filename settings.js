@@ -5,5 +5,5 @@ var SCOPE = 'matricula';
 
 // https://neemias-renan.github.io/qrc_refeitoriocnat/
 // http://localhost:8000/index.html
-//
+// www2.ifrn.edu.br/refeitoriocnat/
 
