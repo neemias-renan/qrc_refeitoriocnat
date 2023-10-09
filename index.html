@@ -75,7 +75,7 @@
           <span>
             Agradecemos o seu interesse em desfrutar do nosso serviço de lanches oferecido no refeitório da escola.
             <br /><br />
-            No entanto, gostaríamos de informar que o lanche está disponível exclusivamente para os alunos matriculados.
+            No entanto, gostaríamos de informar que o lanche está disponível exclusivamente para os alunos matriculados no campus Natal-Central.
             <br /><br />
             Matrícula: <span class="info-matricula"></span>
             <br />
@@ -107,7 +107,8 @@
 
       if (suap.isAuthenticated()) {
         var callback = (response) => {
-          if (response.tipo_vinculo == 'Aluno') {
+          console.log(response)
+          if (response.tipo_vinculo == 'Aluno' && response.vinculo.campus == "CNAT") {
             document.querySelector('.authenticated-section').style = "display: flex;"
             qrcode.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${response.matricula}&bgcolor=01BE64`;
             document.getElementById('username').textContent = response.nome_usual;
